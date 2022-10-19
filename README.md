@@ -43,14 +43,24 @@ Iterasi = 5 | xL = 3.9375 | xU = 4.75 | xR = 4.34375 | f(xL) = -7.47681 | f(xU) 
 
 **1. Import Libraries**
 
-<img width="328" alt="image" src="https://user-images.githubusercontent.com/101172637/196722380-7eef02f6-4205-41f3-9d94-378e1a648b83.png">
-
+  ```
+  import matplotlib.pyplot as plt
+  import numpy as np
+  ```
 Menggunakan dua library Python yaitu *Matplotlib.pyplot* dan *NumPy* yang berfungsi untuk gambar grafik
 
 
 **2. Meminta user-input**
 
-<img width="490" alt="image" src="https://user-images.githubusercontent.com/101172637/196723228-73e4e8b8-a5d4-42a0-9e1e-49c697fb1aff.png">
+```
+xL = float(input("Input x lower: "))
+xU = float(input("Input x upper: "))
+xtrue = float(input("Input x true: "))
+function = input("Input your function: ")
+iteration = int(input("How many iteration: "))
+
+metode_bolzano(function,xL, xU, xtrue, iteration)
+```
 
   xL = Menerima nilai dari Lower
 
@@ -64,16 +74,87 @@ Menggunakan dua library Python yaitu *Matplotlib.pyplot* dan *NumPy* yang berfun
 
 **3. Membuat fungsi Bolzano**
 
-  <img width="549" alt="image" src="https://user-images.githubusercontent.com/101172637/196726480-b470d84c-1b52-407c-ba8e-6fcc6b92988b.png">
+  ```
+  def metode_bolzano(function, xL, xU, xtrue, iteration):
+  ```
 
   Didalam fungsi Bolzano, terdapat 2 fungsi yaitu:
 
   **f(x): berfungsi untuk function**
 
-  <img width="234" alt="image" src="https://user-images.githubusercontent.com/101172637/196729511-38ee9dfc-73c4-41e8-bdb2-3c73f11bdf87.png">
+  ```
+      def f(x):
+        f = eval(function)
+        return f
+  ```
 
   **graphic(): berfungsi untuk visualisasi data**
 
-  <img width="720" alt="image" src="https://user-images.githubusercontent.com/101172637/196729581-1c6ed0be-2694-47ec-ae26-44606adadb87.png">
+  ```
+      def graphic():
+        x = np.linspace(-10, 10, 100)
+        y = f(x)
 
+        plt.plot(x, y)
+        plt.title("Visualization of Bolzano Method with given function")
+        plt.draw()
+        plt.show()
+  ```
+    
+  Fungsi awal untuk mencari nilai iterasi 1
+  
+  ```
+  xR = float("{:.5f}".format((xL+xU)/2))
+    yL = ("{:.5f}".format(f(xL)))
+    yU = ("{:.5f}".format(f(xU)))
+    yR = ("{:.5f}".format(f(xR)))
+    Et = ("{:.5f}".format(abs(((xtrue - xR) / xtrue)*100)))
+    Ea = "Not yet"
+  ```
+  
+  xR    = Taksiran pertama
+  
+  f(xL) = nilai function dengan x bernilai xL
+  
+  f(xU) = nilai function dengan x bernilai xU
+  
+  f(xR) = nilai function dengan x bernilai xR
+  
+  Et    = Mencari error true dengan xTrue
+  
+  Ea    = Mencari error approximate dengan nilai xR bertahap (Bernilai not yet di awal karena xR hanya ada satu)
+  
+  **Menggunakan perulangan while loop untuk melakukan iterasi sesuai input user (mencari nilai-nilai terbaru juga)**
+  ```
+  i = 1
+    while (abs(f(xR)) > 0 and i < iteration):
+        print (f"Iterasi = {i} | xL = {xL} | xU = {xU} | xR = {xR} | f(xL) = {yL}| f(xU) = {yU} | f(xR) = {yR} | Et = {Et} | Ea = {Ea}")
+        if f(xL)*f(xR) < 0:
+            xU = xR
 
+        elif f(xL)*f(xR) > 0:
+            xL = xR
+
+        else:
+            print(xR)
+
+        b = xR
+        xR = float("{:.5f}".format((xL+xU)/2))
+        yL = ("{:.5f}".format(f(xL)))
+        yU = ("{:.5f}".format(f(xU)))
+        yR = ("{:.5f}".format(f(xR)))
+        Et = ("{:.5f}".format(abs(((xtrue - xR) / xtrue)*100)))
+        Ea = ("{:.5f}".format(abs(((xR - b)/xR)*100)))
+        i += 1
+
+    print (f"Iterasi = {i} | xL = {xL} | xU = {xU} | xR = {xR} | f(xL) = {yL}| f(xU) = {yU} | f(xR) = {yR} | Et = {Et} | Ea = {Ea}")
+    graphic()
+    
+```    
+ Perulangan dilakukan dengan syarat-syarat berikut:
+ 1. Nilai absolut f(xR) belum sama dengan 0 dan iterasi belum mencapai input user
+ 2. Kondisi perubahan nilai yang dilakukan terhadap xL dan xU serta f(xL) dan f(xR)
+ 3. Nilai b merupakan nilai xR yang belum diperbarui (berfungsi untuk Error Approximate)
+ 4. Perbaruan nilai dari komponen xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
+ 5. Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
+ 6. Visualisasi ditunjukan
