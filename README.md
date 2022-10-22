@@ -50,7 +50,14 @@ Iterasi = 5 | xL = 3.9375 | xU = 4.75 | xR = 4.34375 | f(xL) = -7.47681 | f(xU) 
 Menggunakan dua library Python yaitu *Matplotlib.pyplot* dan *NumPy* yang berfungsi untuk gambar grafik
 
 
-**2. Meminta user-input**
+**2. Menentukan pilihan metode**
+
+Tersedia dua metode bolzano berbeda
+
+- Pertama, xtrue diketahui jadi Error True dan Error Approximate dapat dicari
+- Kedua, xtrue tidak diketahui jadi Error True dan Error Approximate tidak dapat dicari
+
+**3. Meminta user-input**
 
 ```
 xL = float(input("Input x lower: "))
@@ -59,7 +66,7 @@ xtrue = float(input("Input x true: "))
 function = input("Input your function: ")
 iteration = int(input("How many iteration: "))
 
-metode_bolzano(function,xL, xU, xtrue, iteration)
+metode_bolzano1(function,xL, xU, xtrue, iteration)
 ```
 
   xL = Menerima nilai dari Lower
@@ -68,14 +75,14 @@ metode_bolzano(function,xL, xU, xtrue, iteration)
 
   xtrue = Nilai x yang sebenarnya
 
-  Function = Fungsi yang dipakai
+  function = Fungsi yang dipakai
 
-  Iteration = Jumlah iterasi yang dibutuhkan
+  iteration = Jumlah iterasi yang dibutuhkan
 
-**3. Membuat fungsi Bolzano**
+**4. Membuat fungsi Bolzano**
 
   ```
-  def metode_bolzano(function, xL, xU, xtrue, iteration):
+  def metode_bolzano1(function, xL, xU, xtrue, iteration):
   ```
 
   Didalam fungsi Bolzano, terdapat 2 fungsi yaitu:
@@ -104,7 +111,7 @@ metode_bolzano(function,xL, xU, xtrue, iteration)
   Fungsi awal untuk mencari nilai iterasi 1
   
   ```
-  xR = float("{:.5f}".format((xL+xU)/2))
+    xR = float("{:.5f}".format((xL+xU)/2))
     yL = ("{:.5f}".format(f(xL)))
     yU = ("{:.5f}".format(f(xU)))
     yR = ("{:.5f}".format(f(xR)))
@@ -126,7 +133,7 @@ metode_bolzano(function,xL, xU, xtrue, iteration)
   
   **Menggunakan perulangan while loop untuk melakukan iterasi sesuai input user (mencari nilai-nilai terbaru juga)**
   ```
-  i = 1
+    i = 1
     while (abs(f(xR)) > 0 and i < iteration):
         print (f"Iterasi = {i} | xL = {xL} | xU = {xU} | xR = {xR} | f(xL) = {yL}| f(xU) = {yU} | f(xR) = {yR} | Et = {Et} | Ea = {Ea}")
         if f(xL)*f(xR) < 0:
@@ -158,3 +165,7 @@ metode_bolzano(function,xL, xU, xtrue, iteration)
  4. Perbaruan nilai dari komponen xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
  5. Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
  6. Visualisasi ditunjukan
+
+**NOTE**
+
+Metode tanpa xtrue bernama *metode_bolzano2*, caranya sama seperti *metode_bolzano1* tapi semua hal yang berkaitan dengan xtrue,Ea, dan Et tidak ada
