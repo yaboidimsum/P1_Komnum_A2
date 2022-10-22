@@ -52,10 +52,37 @@ Menggunakan dua library Python yaitu *Matplotlib.pyplot* dan *NumPy* yang berfun
 
 **2. Menentukan pilihan metode**
 
+```
+print("Bolzano Method Numeric Computing")
+option = int(input("x true include (1) / x true not include (0): "))
+#Choose if x true wanna be included or not
+
+if option == 1:
+    xL = float(input("Input x lower: "))
+    xU = float(input("Input x upper: "))
+    xtrue = float(input("Input x true: "))
+    function = input("Input your function: ")
+    iteration = int(input("How many iteration: "))
+
+    metode_bolzano1(function, xL, xU, xtrue, iteration)
+    #metode_bolzano1 is function with xtrue to find the Ea and Et
+
+elif option == 0:
+    xL = float(input("Input x lower: "))
+    xU = float(input("Input x upper: "))
+    function = input("Input your function: ")
+    iteration = int(input("How many iteration: "))
+
+    metode_bolzano2(function, xL, xU, iteration)
+    # metode_bolzano2 is function without xtrue, Ea and Et
+else:
+    print("Wrong input")
+```
+
 Tersedia dua metode bolzano berbeda
 
-- Pertama, xtrue diketahui jadi Error True dan Error Approximate dapat dicari
-- Kedua, xtrue tidak diketahui jadi Error True dan Error Approximate tidak dapat dicari
+- Pertama (metode_bolzano1), xtrue diketahui jadi Error True dan Error Approximate dapat dicari
+- Kedua (metode_bolzano2), xtrue tidak diketahui jadi Error True dan Error Approximate tidak dapat dicari
 
 **3. Meminta user-input**
 
@@ -78,6 +105,8 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
   function = Fungsi yang dipakai
 
   iteration = Jumlah iterasi yang dibutuhkan
+  
+  Fungsi metode_bolzano1 dipanggil
 
 **4. Membuat fungsi Bolzano**
 
@@ -87,18 +116,18 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
 
   Didalam fungsi Bolzano, terdapat 2 fungsi yaitu:
 
-  **f(x): berfungsi untuk function**
+  **f(x): berfungsi untuk fungsi yang akan dipakai**
 
   ```
-      def f(x):
+      def f(x): #Evaluating mathematical function into expression
         f = eval(function)
         return f
   ```
 
-  **graphic(): berfungsi untuk visualisasi data**
+  **graphic(): berfungsi untuk visualisasi grafik**
 
   ```
-      def graphic():
+      def graphic(): #Draw the graphic of Bolzano Method
         x = np.linspace(-10, 10, 100)
         y = f(x)
 
@@ -111,6 +140,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
   Fungsi awal untuk mencari nilai iterasi 1
   
   ```
+    #First value for each xR,f(xL),f(xU),f(xR),Et, and Ea
     xR = float("{:.5f}".format((xL+xU)/2))
     yL = ("{:.5f}".format(f(xL)))
     yU = ("{:.5f}".format(f(xU)))
@@ -134,7 +164,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
   **Menggunakan perulangan while loop untuk melakukan iterasi sesuai input user (mencari nilai-nilai terbaru juga)**
   ```
     i = 1
-    while (abs(f(xR)) > 0 and i < iteration):
+    while (abs(f(xR)) > 0 and i < iteration): #While loop for iteration
         print (f"Iterasi = {i} | xL = {xL} | xU = {xU} | xR = {xR} | f(xL) = {yL}| f(xU) = {yU} | f(xR) = {yR} | Et = {Et} | Ea = {Ea}")
         if f(xL)*f(xR) < 0:
             xU = xR
@@ -145,7 +175,9 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
         else:
             print(xR)
 
-        b = xR
+        b = xR #xR value before updated into a new one (for Ea)
+        
+        #Update each value to the new one
         xR = float("{:.5f}".format((xL+xU)/2))
         yL = ("{:.5f}".format(f(xL)))
         yU = ("{:.5f}".format(f(xU)))
@@ -159,12 +191,16 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
     
 ```    
  Perulangan dilakukan dengan syarat-syarat berikut:
- 1. Nilai absolut f(xR) belum sama dengan 0 dan iterasi belum mencapai input user
+ 1. Nilai absolut f(xR) belum lebih besar 0 dan iterasi belum mencapai input user
  2. Kondisi perubahan nilai yang dilakukan terhadap xL dan xU serta f(xL) dan f(xR)
  3. Nilai b merupakan nilai xR yang belum diperbarui (berfungsi untuk Error Approximate)
  4. Perbaruan nilai dari komponen xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
- 5. Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
- 6. Visualisasi ditunjukan
+ 
+ Terakhir
+ 
+ -Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
+ 
+ -Visualisasi ditunjukan
 
 **NOTE**
 
