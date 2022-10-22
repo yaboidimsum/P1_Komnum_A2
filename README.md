@@ -204,4 +204,4 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
 
 **NOTE**
 
-Metode tanpa xtrue bernama *metode_bolzano2*, caranya sama seperti *metode_bolzano1* tapi semua hal yang berkaitan dengan xtrue,Ea, dan Et tidak ada
+Metode tanpa xtrue bernama *metode_bolzano2*, caranya sama seperti *metode_bolzano1* tapi semua hal yang berkaitan dengan xtrue,Ea, dan Et tidak ada.
