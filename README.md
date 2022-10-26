@@ -83,7 +83,7 @@ Menggunakan dua library Python yaitu *Matplotlib.pyplot* dan *NumPy* yang berfun
 
 **2. Menentukan pilihan metode**
 
-```
+```python
 print("Bolzano Method Numeric Computing")
 option = int(input("x true include (1) / x true not include (0): "))
 #Choose if x true wanna be included or not
@@ -117,7 +117,7 @@ Tersedia dua metode bolzano berbeda
 
 **3. Meminta user-input**
 
-```
+```python
 xL = float(input("Input x lower: "))
 xU = float(input("Input x upper: "))
 xtrue = float(input("Input x true: "))
@@ -141,7 +141,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
 
 **4. Membuat fungsi Bolzano**
 
-  ```
+  ```python
   def metode_bolzano1(function, xL, xU, xtrue, iteration):
   ```
 
@@ -149,7 +149,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
 
   **f(x): berfungsi untuk fungsi yang akan dipakai**
 
-  ```
+  ```python
       def f(x): #Evaluating mathematical function into expression
         f = eval(function)
         return f
@@ -157,7 +157,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
 
   **graphic(): berfungsi untuk visualisasi grafik**
 
-  ```
+  ```python
       def graphic(): #Draw the graphic of Bolzano Method
         x = np.linspace(-10, 10, 100)
         y = f(x)
@@ -170,7 +170,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
     
   Fungsi awal untuk mencari nilai iterasi 1
   
-  ```
+  ```python
     #First value for each xR,f(xL),f(xU),f(xR),Et, and Ea
     xR = float("{:.5f}".format((xL+xU)/2))
     yL = ("{:.5f}".format(f(xL)))
@@ -193,7 +193,7 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
   Ea    = Mencari error approximate dengan nilai xR bertahap (Bernilai not yet di awal karena xR hanya ada satu)
   
   **Menggunakan perulangan while loop untuk melakukan iterasi sesuai input user (mencari nilai-nilai terbaru juga)**
-  ```
+  ```python
     i = 1
     while (abs(f(xR)) > 0 and i < iteration): #While loop for iteration
         print (f"Iterasi = {i} | xL = {xL} | xU = {xU} | xR = {xR} | f(xL) = {yL}| f(xU) = {yU} | f(xR) = {yR} | Et = {Et} | Ea = {Ea}")
