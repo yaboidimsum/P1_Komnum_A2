@@ -229,9 +229,9 @@ metode_bolzano1(function,xL, xU, xtrue, iteration)
  
  Terakhir
  
- -Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
+ - Print iterasi terakhir untuk xL, xU, xR, f(xL), f(xU), f(xR), Et, dan Ea
  
- -Visualisasi ditunjukan
+ - Visualisasi ditunjukan
 
 **NOTE**
 
