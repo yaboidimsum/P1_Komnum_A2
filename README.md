@@ -74,7 +74,7 @@ Iterasi = 20 | xL = 3.99999 | xU = 4.00002 | xR = 4.0 | f(xL) = -0.00121| f(xU) 
 
 **1. Import Libraries**
 
-  ```
+  ```python
   import matplotlib.pyplot as plt
   import numpy as np
   ```
